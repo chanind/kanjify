@@ -1,0 +1,5 @@
+stylus:
+  compress: true
+  path: ./path/to/styl
+baseurl: /kanjify
+pygments: true
