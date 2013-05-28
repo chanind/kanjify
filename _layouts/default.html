@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-	<head>
+    <head>
+        <meta charset="utf-8">
 		<link rel="stylesheet" href="/kanjify/assets/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/kanjify/assets/pygments.css" />
 		<link rel="stylesheet" href="/kanjify/assets/application.css" />
@@ -27,11 +28,13 @@
             </div>
 
         </div>
-        <script type="text/javascript" src="/jquery-highlighter/assets/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="/jquery-highlighter/assets/underscore-min.js"></script>
-        <script type="text/javascript" src="/jquery-highlighter/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/kanjify/assets/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="/kanjify/assets/underscore-min.js"></script>
+        <script type="text/javascript" src="/kanjify/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/kanjify/assets/kanjify.js"></script>
         {% if page.js %}
-            <script type="text/javascript" src="/jquery-highlighter/assets/{{ page.js }}"></script>
+            <script type="text/javascript" src="/kanjify/assets/{{ page.js }}"></script>
 	    {% endif %}
     </body>
 </html>
