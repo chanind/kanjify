@@ -13,12 +13,13 @@ class window.Kanjify
         @svg = d3.select(@options.target).append('svg')
             .attr('width', @options.width)
             .attr('height', @options.height)
-        @g = @svg.append('g').attr('style', @options.baseStrokeStyle)
 
     setCharacter: (@char) ->
-        console.log @char
+        @render()
 
     render: ->
+        @g.remove() if @g
+        @g = @svg.append('g').attr('style', @options.baseStrokeStyle)
         @loadKanjivg (err, @charSvg) =>
             strokes = @charSvg.getElementsByTagName('path')
             @fixScaling()
@@ -38,16 +39,16 @@ class window.Kanjify
     animate: ->
         for path in @paths
             path.style('stroke-dasharray', '0,99999')
-        @_animateHelper(0)
+        @animateEachStroke(0)
 
-    _animateHelper: (pathNum) ->
+    animateEachStroke: (pathNum) ->
         path = @paths[pathNum]
         return unless path
         path
             .transition()
             .style('stroke-dasharray', '100,99999')
             .each 'end', =>
-                @_animateHelper(pathNum + 1)
+                @animateEachStroke(pathNum + 1)
 
     loadKanjivg: (callback) -> d3.xml(@getKanjivgFilePathForChar(), callback)
 

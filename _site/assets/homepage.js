@@ -9,7 +9,6 @@
         kanjivgPath: '/kanjify/assets/kanjivg/kanji/'
       });
       this.kanjify.setCharacter('私');
-      this.kanjify.render();
       $('#animate').click(function() {
         return _this.kanjify.animate();
       });
