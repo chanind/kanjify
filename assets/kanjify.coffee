@@ -6,19 +6,28 @@ class window.Kanjify
         kanjivgPath: null
         width: 200
         height: 200
+        svgStyle: 'fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;'
 
     constructor: (options = {}) ->
         @options[key] = value for key, value of options
-        @svg = d3.select(@options.target).append('svg')
+        @svg = $('<svg />')
             .attr('width', @options.width)
             .attr('height', @options.height)
+            .appendTo(@options.target)
 
     setCharacter: (@char) ->
         console.log @char
 
     render: ->
         @loadKanjivg (err, @charSvg) =>
-            @svg.append(@charSvg)
+            @strokes = @charSvg.getElementsByTagName('path')
+            for stroke in @strokes
+                path = $('<path />')
+                    .attr('d', stroke.attributes.d.textContent)
+                    .attr('style', @options.svgStyle)
+                    .appendTo(@svg)
+
+
 
 
     loadKanjivg: (callback) -> d3.xml(@getKanjivgFilePathForChar(), callback)
